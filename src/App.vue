@@ -1,29 +1,23 @@
 <template>
   <div id="app">
-    <div @click="goToPage"><img src="./assets/logo.png"></div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'app',
-    methods: {
-      goToPage () {
-        console.log(123)
-        this.$router.push('/world')
-      }
-    }
+    name: 'app'
   }
 </script>
 
 <style>
+@import "./styles/home.css";
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #ffffff;
+  background-color: #000000;
+  height: 100%;
 }
 </style>
