@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import NewSlider from '../pages/ui/slider/NewSlider'
+import NewSlider from '../pages/ui/NewSlider'
 
 export default {
   name: 'IndexPage',

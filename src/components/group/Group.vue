@@ -1,5 +1,6 @@
 <template>
   <div>
+    <calender />
     <predetermine :predeters="lessons" mode="lesson"/>
   </div>
 </template>
@@ -7,6 +8,7 @@
 <script>
 import { groupLessons } from './helper.js'
 import Predetermine from '../../pages/Predetermine'
+import Calender from '../../pages/ui/Calender'
 
 export default {
   name: 'PrivateTrader',
@@ -19,7 +21,8 @@ export default {
     document.title = '约团课'
   },
   components: {
-    Predetermine
+    Predetermine,
+    Calender
   }
 }
 </script>
