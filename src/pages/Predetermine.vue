@@ -44,7 +44,7 @@ export default {
         right: 0;
       }
       h5{
-        margin-left: 1.4rem;
+        margin-left: -.18rem;
       }
       .detail{
         b{
@@ -68,9 +68,7 @@ export default {
     div{
       position: relative;
       background-color: #1a1a1a;
-      p, h5{
-        margin-left: 1.58rem;
-      }
+      margin-left: 1.58rem;            
       h5{
         height: .5rem;
         line-height: .5rem;

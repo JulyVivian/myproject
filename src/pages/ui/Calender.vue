@@ -7,10 +7,12 @@
       </div>
       <!-- 日期选择 -->
       <div class="middle clearfix">
-        <span @click="chooseDay(i)" :class="{'cell active': currentDay === i, 'cell': currentDay !== i}" v-for="i in days">{{i}}</span>
+        <div ref="ele" class="days-box">
+          <span @click="chooseDay(i)" :class="{'cell active': currentDay === i, 'cell': currentDay !== i, 'cell past': i < current.day}" v-for="i in daysShow">{{i}}</span>
+        </div>
       </div>
     </div>
-    <p><img src="../../assets/enter.png" class="enter"/></p>
+    <p @click="turnToNext"><img src="../../assets/enter.png" class="enter"/></p>
   </div>
 </template>
 
@@ -35,8 +37,16 @@
           days: 0
         },
         month: 0,
-        currentDay: 0
+        currentDay: 0,
+        startX: 0,
+        endX: 0
       }
+    },
+    mounted () {
+      this.$refs.ele.style.width = (this.current.days - this.current.day + this.current.weekday + 1) * 0.93 + 'rem'
+      this.$refs.ele.addEventListener('touchstart', this.onTouchStartBox)
+      this.$refs.ele.addEventListener('touchmove', this.onTouchMoveBox)
+      this.$refs.ele.addEventListener('touchend', this.onTouchEndBox)
     },
     created () {
       this.current = util.initDate()
@@ -46,15 +56,19 @@
     },
     computed: {
       /**
-       * 月份对应的天数
+       * 展示的日期
        */
-      days () {
+      daysShow () {
         let totaldays = util.getDays(this.current.year)[this.current.month]
         let totaldaysArray = new Array(totaldays)
         for (var i = 0; i < totaldays; i++) {
           totaldaysArray[i] = i + 1
         }
-        return totaldaysArray.slice(this.current.day - 1 - this.current.weekday, this.current.day + (7 - 1 - this.current.weekday))
+        if (this.current.weekday !== 0) {
+          return totaldaysArray.slice(this.current.day - this.current.weekday - 1)
+        }
+        return totaldaysArray.slice(this.current.day - 1)
+        // return totaldaysArray
       },
       /**
        * 每个月的第一天是星期几
@@ -68,6 +82,21 @@
       }
     },
     methods: {
+      onTouchStartBox (event) {
+        this.startX = event.targetTouches[0].pageX
+      },
+      onTouchMoveBox (event) {
+        this.endX = event.targetTouches[0].pageX
+      },
+      onTouchEndBox (event) {
+        if (this.startX - this.endX > 0) {
+          this.turnToNext()
+        } else {
+          this.turnToPre()
+        }
+        this.startX = 0
+        this.endX = 0
+      },
       /**
        * 更改年份
        * @param{number} op 表示增加和减少
@@ -98,10 +127,23 @@
           case 0: return 'Sun'
         }
       },
+      /**
+       * 点击选取日期
+       */
       chooseDay (index) {
+        if (index <= this.current.day) {
+          return false
+        }
         this.currentDay = index
-        this.current.weekday = index - this.current.day + this.current.weekday
-        this.current.day = index
+      },
+      /**
+       * 日期翻页
+       */
+      turnToNext () {
+        this.$refs.ele.style.transform = 'translateX(-' + 7 * 0.93 + 'rem' + ')'
+      },
+      turnToPre () {
+        this.$refs.ele.style.transform = 'translateX(0)'
       }
     }
   }
@@ -136,10 +178,18 @@
   .vue-date-container .main .middle {
     height: .73rem;
     line-height: .73rem;
+    width: 100%;
+    overflow: auto;
+    .days-box{
+      height: .73rem;
+    }
     .cell.active {
       background-color: #ff4236;
       border-radius: 50%;
     }
+  }
+  .vue-date-container .main .middle .cell.past{
+    color: #666666;
   }
   .vue-date-container .main .middle .cell{
     width: .57rem;
@@ -149,7 +199,7 @@
     float: left; 
     font-size: .36rem;
     font-weight: bold;
-    text-indent: .04rem;
+    text-align: center;
   }  
   .clearfix:after {
     content: ' ';
