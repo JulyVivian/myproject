@@ -17,7 +17,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
-  background-color: #000000;
+  background-color: #0d0d0d;
   height: 100%;
 }
 </style>

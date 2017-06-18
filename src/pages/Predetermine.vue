@@ -31,7 +31,8 @@ export default {
   .predeter-item{
     height: 1.34rem;
     padding: .42rem .28rem;
-    border: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    background-color: #1a1a1a;
     img{
       float: left;
       width: 1.3rem;
@@ -66,6 +67,7 @@ export default {
     }
     div{
       position: relative;
+      background-color: #1a1a1a;
       p, h5{
         margin-left: 1.58rem;
       }

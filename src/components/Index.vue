@@ -1,13 +1,16 @@
 <template>
   <div class="home-page">
     <div class="slider-box">
-      <slider :items="items" :speed="1.5" :delay="2" :pause="true" :autoplay="true"></slider>
+      <new-slider :items="items"></new-slider>
     </div>      
-    <div class="mine"><p><img src="../assets/person.png"/>个人中心<img src="../assets/enter.png"/></p><p><img src="../assets/myappoint.png"/>我的预约<img src="../assets/enter.png"/></p></div>
+    <div class="mine">
+      <p><img src="../assets/person.png"/>个人中心<img src="../assets/enter.png" class="enter"/></p>
+      <p class="my-pre"><img src="../assets/myappoint.png"/>我的预约<span>2</span><img src="../assets/enter.png" class="enter"/></p>
+    </div>
     <ul class="lessons clx">
       <li @click="goToPrivateTrader"><img src="../assets/1.png"/></li>
       <li @click="goToGroup"><img src="../assets/2.png"/></li>
-      <li@click="goToPlayGround"><img src="../assets/3.png"/></li>
+      <li @click="goToPlayGround"><img src="../assets/3.png"/></li>
       <li><img src="../assets/4.png"/></li>
       <li><img src="../assets/5.png"/></li>
     </ul>
@@ -15,7 +18,7 @@
 </template>
 
 <script>
-import Slider from '../pages/ui/slider/Slider'
+import NewSlider from '../pages/ui/slider/NewSlider'
 
 export default {
   name: 'IndexPage',
@@ -23,14 +26,11 @@ export default {
     return {
       items: [
         {
-          src: 'https://julyvivian.github.io/js_css_sources/banner.jpg',
-          alt: 'images-1'
+          src: 'https://julyvivian.github.io/js_css_sources/banner.jpg'
         }, {
-          src: 'https://julyvivian.github.io/js_css_sources/banner.jpg',
-          alt: 'images-2'
+          src: 'https://julyvivian.github.io/js_css_sources/banner.jpg'
         }, {
-          src: 'https://julyvivian.github.io/js_css_sources/banner.jpg',
-          alt: 'images-3'
+          src: 'https://julyvivian.github.io/js_css_sources/banner.jpg'
         }
       ]
     }
@@ -50,7 +50,7 @@ export default {
     }
   },
   components: {
-    Slider
+    NewSlider
   }
 }
 </script>
@@ -78,22 +78,30 @@ export default {
   .mine{
     width: 100%;
     display: flex;
-    height: .9rem;
-    line-height: .9rem;
-    background-color: #000000;
+    height: .37rem;
+    border-bottom: 1px solid #323232;
+    padding: .25rem 0;
+    background-color: #171717;
   }
   .mine p{
     flex: 1;
-    height: .9rem;
-    line-height: .9rem;
+    height: .38rem;
+    line-height: .38rem;
     text-align: left;
     text-indent: .3rem;
     color: #ffffff;
   }
-  .mine p img:nth-child(2){
+  .mine .my-pre span{
+    font-size: .3rem;
+    color: #ff851a;
+    margin-left: 1rem;
+  }
+  .mine p:nth-child(1){
+    border-right: 1px solid #545454;
+  }
+  .mine p .enter{
     float: right;
     margin-right: .3rem;
-    margin-top: .24rem;
     width: .2rem;
   }
   .mine p img{
@@ -103,7 +111,6 @@ export default {
   .lessons{
     width: 6.9rem;
     padding: .2rem .3rem;
-    background-color: #000000;
   }
   .lessons li{
     width: 3.33rem;

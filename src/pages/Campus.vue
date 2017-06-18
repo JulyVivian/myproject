@@ -4,6 +4,7 @@
       <img :src="camp.pic" />
       <div>
         <button>预约</button>
+        <p class="limits">限{{camp.limits}}人</p>
         <p class="price-days"><span>¥{{camp.price}}</span><img src="../assets/time.png" />{{camp.downcount}}天</p>
         <p class="detail">{{camp.detail}}</p>
       </div>
@@ -32,6 +33,18 @@
         height: .97rem;
         padding: .3rem;
         border-top: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        background-color: #1a1a1a;
+        position: relative;
+        .limits{
+          position: absolute;
+          right: .5rem;
+          top: .98rem;
+          width: .9rem;
+          height: .25rem;
+          color: #999999;
+          font-size: .26rem;
+        }
         button{
           float: right;
           width: 1.34rem;
@@ -59,6 +72,7 @@
         .detail{
           height: .47rem;
           line-height: .47rem;
+          color: #b2b2b2;
         }
       }
     }
