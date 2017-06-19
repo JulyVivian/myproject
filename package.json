@@ -1,7 +1,7 @@
 {
-  "name": "my-first-vue-project",
+  "name": "playground",
   "version": "1.0.0",
-  "description": "this is my very first project!",
+  "description": "just for the subscription of playground",
   "author": "zhouqiaoni",
   "private": true,
   "scripts": {
@@ -96,5 +96,18 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulyVivian/myproject.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulyVivian/myproject/issues"
+  },
+  "homepage": "https://github.com/JulyVivian/myproject#readme"
 }
