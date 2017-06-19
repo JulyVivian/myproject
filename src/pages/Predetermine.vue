@@ -6,7 +6,7 @@
         <button>预约</button>
         <h5>{{predeter.name}}</h5>
         <p class="key-words">{{predeter.keywords}}</p>
-        <p v-if="mode === 'trader'" class="detail">{{predeter.detail}}</p>
+        <p v-if="mode === 'trader'" class="detail ellipsis">{{predeter.detail}}</p>
         <p v-else="mode === 'lesson'" class="detail"><b></b><span>{{predeter.time}}</span><span>¥{{predeter.price}}</span></p>
       </div>
     </div>    
@@ -82,9 +82,6 @@ export default {
         margin-bottom: .07rem;
       }
       .detail{
-        white-space:nowrap;
-        text-overflow:ellipsis;
-        overflow:hidden;
         font-size: .28rem;
         color: #b2b2b2;
       }
